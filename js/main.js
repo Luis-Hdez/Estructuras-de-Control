@@ -178,8 +178,15 @@ btnNumEnteros.addEventListener("click", () => {
       document.querySelector(
         "#resultados span"
       ).textContent = `Has ingresado ${contador} de 10 números.`;
+
+      if (contador === 10) {
+        btnNumEnteros.textContent = "Ver Resultados";
+      }
     }
+    
   } else {
+    
+
     // Calcular las estadiisticas de los numeros ingresados
     const negativos = numerosEnteros.filter((n) => n < 0).length;
     const positivos = numerosEnteros.filter((n) => n > 0).length;
@@ -201,6 +208,38 @@ btnNumEnteros.addEventListener("click", () => {
     btnNumEnteros.disabled = true;
   }
 });
+
+
+//
+//
+// EJERCICIO 8
+const btnTablaMultiplicar = document.getElementById("btnTablaMultiplicar");
+const num = document.getElementById("num");
+const resultadoTabla = document.querySelector("#resultadoTabla span")
+
+btnTablaMultiplicar.addEventListener("click", () => {
+  const numero = parseInt(num.value, 10);
+
+  if (isNaN(numero)) {
+   resultadoTabla.innerHTML = `Ingresa un numero`;
+    return;
+  }
+
+  let tablaHTML = `<h5 class="text-primary">Tabla del ${numero}</h5><ul class="list-group">`;
+
+  for (let i = 1; i <= 10; i++) {
+    tablaHTML += `<li class="list-group-item">${numero} x ${i} = ${numero * i}</li>`;
+  }
+
+  tablaHTML += '</ul>';
+
+  resultadoTabla.innerHTML = tablaHTML;
+});
+
+//
+//
+// EJERCICIO 9
+
 
 //
 //
