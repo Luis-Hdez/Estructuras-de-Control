@@ -129,8 +129,8 @@ function calcularDescuentoViaje() {
   ];
 
   let destinoSeleccionado = 1; // elegimos un destino
-  
-  let destino = destinos.find(d => d.id === destinoSeleccionado);
+
+  let destino = destinos.find((d) => d.id === destinoSeleccionado);
 
   if (!destino) {
     console.error("Destino no válido"); //solo si se selecciona un destino no contemplado
@@ -143,7 +143,11 @@ function calcularDescuentoViaje() {
   console.log(`Origen: ${origen}`);
   console.log(`Destino seleccionado: ${destino.name}`);
   console.log(`Precio original: $${destino.price}`);
-  console.log(`Descuento aplicado: $${descuentoTuristico.toFixed(2)} (${destino.discount * 100}%)`);
+  console.log(
+    `Descuento aplicado: $${descuentoTuristico.toFixed(2)} (${
+      destino.discount * 100
+    }%)`
+  );
   console.log(`Precio final: $${precioFinal.toFixed(2)}`);
 
   return descuentoTuristico;
@@ -151,8 +155,52 @@ function calcularDescuentoViaje() {
 
 calcularDescuentoViaje();
 
+//
+//
+// EJERCICIO 7
+const numerosEnteros = [];
+const btnNumEnteros = document.getElementById("btnNumEnteros");
+let contador = 0;
 
+btnNumEnteros.addEventListener("click", () => {
+  if (contador < 10) {
+    const numero = document.getElementById("number").value;
+    if (numero !== "") {// Verificarmos que no este vacío
+      numerosEnteros.push(numero);
+      contador++;
+      document.getElementById("number").value = "";
+      console.log(
+        `Número ${contador}/10 agregado. Array actual:`,
+        numerosEnteros
+      );
 
+      // en la parte de resultados vamos a actualizar  el dom
+      document.querySelector(
+        "#resultados span"
+      ).textContent = `Has ingresado ${contador} de 10 números.`;
+    }
+  } else {
+    // Calcular las estadiisticas de los numeros ingresados
+    const negativos = numerosEnteros.filter((n) => n < 0).length;
+    const positivos = numerosEnteros.filter((n) => n > 0).length;
+    const multiplos15 = numerosEnteros.filter((n) => n % 15 === 0).length;
+    const sumaPares = numerosEnteros.filter((n) => n % 2 === 0).reduce((a, b) => a + b, 0);
+
+    console.log("Array final:", numerosEnteros);
+
+    // mostramos en en HTML
+    document.querySelector("#resultados span").innerHTML = `
+            <strong>Resultados:</strong><br>
+            • Valores negativos: ${negativos}<br>
+            • Valores positivos: ${positivos}<br>
+            • Múltiplos de 15: ${multiplos15}<br>
+            • Suma de números pares: ${sumaPares}<br>
+            <br>Array completo: [${numerosEnteros.join(", ")}]
+        `;
+
+    btnNumEnteros.disabled = true;
+  }
+});
 
 //
 //
