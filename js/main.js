@@ -335,10 +335,24 @@ function calcularPromedio() {
     const promTarde = promedio(tarde);
     const promNoche = promedio(noche);
 
+    // comparar cada uno
+    let mayorPromedio = "";
+      if (promManana > promTarde && promManana > promNoche) {
+        mayorPromedio = "Turno Mañana";
+      } else if (promTarde > promManana && promTarde > promNoche) {
+        mayorPromedio = "Turno Tarde";
+      } else if (promNoche > promManana && promNoche > promTarde) {
+        mayorPromedio = "Turno Noche";
+      } else {
+        mayorPromedio = "Hay empate entre turnos";
+      }
+
+
     resultadoEdades.innerHTML = `<span class="text-primary">El promedio de edades es:</span></br>
                                 <span class="text-danger">Turno Mañana ${promManana}</span></br>
                                 <span class="text-danger">Turno Tarde: ${promTarde}</span><br>
-                                <span class="text-danger">Turno Noche: ${promNoche}</span><br>`;
+                                <span class="text-danger">Turno Noche: ${promNoche}</span><br>
+                                <span class="text-danger">Promedio Mayor: ${mayorPromedio}</span><br>`;
 
     //btnEstudiante.disabled = true;
 }
